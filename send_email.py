@@ -2,7 +2,6 @@ import csv
 import os
 from datetime import date
 import urllib.request
-import urllib.parse
 import json
 
 TODAY = date.today().isoformat()
@@ -31,16 +30,15 @@ def send():
                     },
                     method="POST"
                 )
-                with urllib.request.urlopen(req) as resp:
-                    print(f"Sent: {row['subject']} — status {resp.status}")
+                try:
+                    with urllib.request.urlopen(req) as resp:
+                        print(f"Sent: {row['subject']} - status {resp.status}")
+                except urllib.error.HTTPError as e:
+                    body = e.read().decode()
+                    print(f"Error {e.code}: {body}")
+                    raise
                 return
 
     print(f"No email found for {TODAY}")
 
 send()
-try:
-    with urllib.request.urlopen(req) as resp:
-        print(f"Sent: {row['subject']} - status {resp.status}")
-except urllib.error.HTTPError as e:
-    print(f"Error {e.code}: {e.read().decode()}")
-    raise
