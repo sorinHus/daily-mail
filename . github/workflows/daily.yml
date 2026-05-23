@@ -10,9 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Run script
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: python send_email.py
-
