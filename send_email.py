@@ -13,7 +13,7 @@ def send():
             if row["date"] == TODAY:
                 params = {
                     "from": "sorin@487.ro",
-                    "to": ["sorin.v.hus@gmail.com"],
+                    "to": ["sorin.v.hus@gmail.com", "oana314@gmail.com"],
                     "subject": row["subject"],
                     "text": row["body"],
                 }
