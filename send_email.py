@@ -7,7 +7,7 @@ import json
 
 TODAY = date.today().isoformat()
 RESEND_API_KEY = os.environ["RESEND_API_KEY"]
-TO_EMAIL = "Oana314@gmail.com"
+TO_EMAIL = "sorin.hus@gmail.com@gmail.com"
 FROM_EMAIL = "sorin@487.ro"
 
 def send():
