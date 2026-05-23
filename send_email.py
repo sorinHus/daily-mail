@@ -38,3 +38,9 @@ def send():
     print(f"No email found for {TODAY}")
 
 send()
+try:
+    with urllib.request.urlopen(req) as resp:
+        print(f"Sent: {row['subject']} - status {resp.status}")
+except urllib.error.HTTPError as e:
+    print(f"Error {e.code}: {e.read().decode()}")
+    raise
