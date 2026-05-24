@@ -2,6 +2,11 @@ import csv
 import os
 import resend
 from datetime import date
+import random
+import time
+
+delay = random.randint(0, 7200)  # random intre 0 si 2 ore
+time.sleep(delay)
 
 TODAY = date.today().isoformat()
 resend.api_key = os.environ["RESEND_API_KEY"]
