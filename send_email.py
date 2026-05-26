@@ -5,9 +5,6 @@ from datetime import date
 import random
 import time
 
-delay = random.randint(0, 7200)  # random intre 0 si 2 ore
-time.sleep(delay)
-
 TODAY = date.today().isoformat()
 resend.api_key = os.environ["RESEND_API_KEY"]
 
@@ -16,14 +13,21 @@ def send():
         reader = csv.DictReader(f)
         for row in reader:
             if row["date"] == TODAY:
+                delay = random.randint(0, 7200)  # random intre 0 si 2 ore
+                print(f"Sleeping {delay}s before sending...")
+                time.sleep(delay)
                 params = {
                     "from": "sorin@487.ro",
                     "to": ["sorin.v.hus@gmail.com", "oana314@gmail.com"],
                     "subject": row["subject"],
                     "text": row["body"],
                 }
-                email = resend.Emails.send(params)
-                print(f"Sent: {email}")
+                try:
+                    email = resend.Emails.send(params)
+                    print(f"Sent: {email}")
+                except Exception as e:
+                    print(f"Error sending email: {e}")
+                    raise
                 return
     print(f"No email found for {TODAY}")
 
