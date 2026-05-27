@@ -13,7 +13,7 @@ def send():
         reader = csv.DictReader(f)
         for row in reader:
             if row["date"] == TODAY:
-                delay = random.randint(0, 200)  # random intre 0 si 200 secunde
+                delay = random.randint(0, 1200)  # random intre 0 si 1200 secunde
                 print(f"Sleeping {delay}s before sending...")
                 time.sleep(delay)
                 params = {
