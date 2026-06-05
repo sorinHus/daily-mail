@@ -5,7 +5,7 @@ from datetime import date
 import random
 import time
 
-TODAY = date.today().isoformat()
+//TODAY = date.today().isoformat()
 resend.api_key = os.environ["RESEND_API_KEY"]
 
 def send():
